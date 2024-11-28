@@ -11,6 +11,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       home: ToDoListScreen(),
       theme: ThemeData(primarySwatch: Colors.blue),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -35,9 +36,13 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
         itemBuilder: (context, index) {
           return Card(
             elevation: 5,
+            margin: EdgeInsets.all(15),
             shadowColor: Colors.orangeAccent,
-            child: ListTile(title: Text(tasks[index]['title']!),
-              subtitle: Text(tasks[index]['description']!),),);
+            child: ListTile(
+              title: Text(tasks[index]['title']!),
+              subtitle: Text(tasks[index]['description']!),
+            ),);
+
         },
       ),
       floatingActionButton: FloatingActionButton(onPressed: () {
@@ -81,6 +86,7 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
           );
         });
       },child: Icon(Icons.add, color: Colors.orangeAccent),),
+
     );
   }
 }
