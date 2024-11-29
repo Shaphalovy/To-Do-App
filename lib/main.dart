@@ -43,7 +43,26 @@ class _ToDoListScreenState extends State<ToDoListScreen> {
               subtitle: Text(tasks[index]['description']!),
               trailing: IconButton(onPressed: (){
                 setState(() {
-                  tasks.removeAt(index);
+                  showDialog(context: context, builder: (context) {
+                        return AlertDialog(
+                          title: Text("Want to delete this task?"),
+                          actions: [
+                            TextButton(
+                                onPressed: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text("Cancel")),
+                            TextButton(
+                                onPressed: () {
+                                  setState(() {
+                                    tasks.removeAt(index);
+                                  });
+                                  Navigator.of(context).pop();
+                                },
+                                child: Text("Delete", style: TextStyle(color: Colors.red),)),
+                          ],
+                        );
+                      },);
                 });
               }, icon: Icon(Icons.delete), color: Colors.red,),
               onTap: () {
